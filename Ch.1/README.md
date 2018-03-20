@@ -44,5 +44,5 @@
     - 이전에 실행했던 서버 Shutdown
     - 재실행(demo -> 우클릭 -> Run as -> Spring Boot App)
     - Chrome
-        - [url] localhost:8080 ![실행화면](./start2.png)
+    - [url] localhost:8080 ![실행화면](./start2.png)
 ---

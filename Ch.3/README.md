@@ -7,7 +7,7 @@
 ----
 
 ### - 4주차
-####1. Spring Starter Project 생성
+#### 1. Spring Starter Project 생성
     file -> new -> Spring Starter Project
 - 프로젝트 생성
 ![1번](./1.png)
@@ -17,16 +17,16 @@ Group, Package : com.이름
 
 <br>
 
-####2. 프로젝트 실행확인
+#### 2. 프로젝트 실행확인
     boot02 -> Run As -> Spring Boot App
 
 <br>
 
-####3. 패키지 생성
+#### 3. 패키지 생성
     controllers, repositories, services, models
 
 - controllers 생성
-![3번](./3.png){: width="100" height="100"}
+![3번](./3.png)
 ![4번](./4.png)
 ![5번](./5.png)
 - repositories, services, models 생성
@@ -34,7 +34,7 @@ Group, Package : com.이름
 
 <br>
 
-####4. 게시판 모델링
+#### 4. 게시판 모델링
     com.kyunghwan.models -> new -> class
 
 - .models 패키지 안 클래스 생성(Board)
@@ -52,7 +52,7 @@ Group, Package : com.이름
 
 <br>
 
-####5. 저장소 생성
+#### 5. 저장소 생성
     com.kyunghwan.repositories -> new -> interface
 
 - 인터페이스 생성
@@ -66,7 +66,7 @@ Group, Package : com.이름
 
 <br>
 
-####6. Controller 생성
+#### 6. Controller 생성
     com.kyunghwan.controllers -> new -> class
 
 - 클래스 생성
@@ -80,7 +80,7 @@ Group, Package : com.이름
 
 <br>
 
-####7. Service 클래스 생성
+#### 7. Service 클래스 생성
     com.kyunghwan.services -> new -> class
 
 - 클래스 생성(BoardService)

@@ -26,7 +26,7 @@ Group, Package : com.이름
     controllers, repositories, services, models
 
 - controllers 생성
-![3번](./3.png)
+![3번](./3.png){: width="100" height="100"}
 ![4번](./4.png)
 ![5번](./5.png)
 - repositories, services, models 생성

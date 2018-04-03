@@ -164,7 +164,7 @@ Group, Package : com.이름
 
 4. JDBC
     - Java Database Connectivity
-    - 자바에서 데이터베이스에 접속할 수 있도록 하는 자바 API
+    - 자바에서 데이터베이스에 접속할 수 있도록 하는 자바 인터페이스
 <br>
 
 5. RDB

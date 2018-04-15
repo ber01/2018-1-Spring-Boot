@@ -176,6 +176,7 @@ public class BootApplicationTests {
 - Test : src/test/java → Run As → JUnit Test
 <br>
 - Workbench → board_table 확인
+
 ![1번](./1.png)
 
 #### 5. 데이터베이스 접근

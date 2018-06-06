@@ -1,0 +1,49 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+	<title>WebBoards</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" th:href="@{/css/minty.css}">
+	<style>
+		.blog-header {
+			line-height: 1;
+			border-bottom: 1px solid #e5e5e5;
+		}
+
+		.blog-header-logo {
+			font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+			font-size: 2.25rem;
+		}
+
+		.blog-header-logo:hover {
+			text-decoration: none;
+		}
+	</style>
+	<th:block layout:fragment="cssScript"></th:block>
+
+</head>
+
+<body>
+	<div class="container">
+		<header class="blog-header py-3">
+			<div class="row flex-nowrap justify-content-between align-items-center">
+				<div class="col-10 text-center">
+					<a class="blog-header-logo text-dark" href="#">게시판 v1</a>
+				</div>
+				<div class="col-2 d-flex justify-content-end align-items-center">
+					<a class="btn btn-sm btn-outline-secondary" th:href="@{register}">글쓰기</a>
+				</div>
+			</div>
+		</header>
+		<div layout:fragment="content"></div>
+	</div>
+	<script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+	<script th:src="@{/js/popper.min.js}"></script>
+	<script th:src="@{/js/tooltip.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<th:block layout:fragment="jsScript"></th:block>
+
+</body>
+</html>

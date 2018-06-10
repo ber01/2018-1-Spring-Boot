@@ -13,6 +13,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 @Entity
 public class Experience {
 
+	// Start Constructor
 	// 기본 생성자
 	public Experience() {
 		
@@ -24,6 +25,7 @@ public class Experience {
 		this.content = content;
 		this.writer = writer;
 	}
+	// End Constructor
 
 	// Start Attribute
 	@Id

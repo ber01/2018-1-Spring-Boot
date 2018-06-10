@@ -16,7 +16,7 @@ public class ResumeController {
     @GetMapping("/")
     public String resumeIndex(Model model) {
         Resume resume = new Resume();
-        resume.setName("YourName");
+        resume.setName("민경환");
         model.addAttribute("resume", resume);
         return "index";
     }

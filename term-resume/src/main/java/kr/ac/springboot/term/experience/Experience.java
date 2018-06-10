@@ -3,15 +3,23 @@ package kr.ac.springboot.term.experience;
 import java.sql.Timestamp;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import kr.ac.springboot.term.resume.Resume;
+
 @Entity
 public class Experience {
+	
+	// 데이터 베이스 연결
+	@ManyToOne(fetch=FetchType.LAZY)
+	private Resume resume;
 
 	// Start Constructor
 	// 기본 생성자

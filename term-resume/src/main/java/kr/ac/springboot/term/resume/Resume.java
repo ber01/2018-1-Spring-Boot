@@ -1,12 +1,22 @@
 package kr.ac.springboot.term.resume;
 
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import kr.ac.springboot.term.experience.Experience;
 
 @Entity
 public class Resume {
+	
+	// 데이터베이스 연결
+	@OneToMany(mappedBy="resume", fetch=FetchType.LAZY)
+	private List<Experience> experience;
 	
 	// Start Constructor
 	// 기본 생성자

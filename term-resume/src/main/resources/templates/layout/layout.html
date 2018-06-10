@@ -1,0 +1,30 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Resume - Start Bootstrap Theme</title>
+
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/resume.css}">
+    <th:block layout:fragment="cssScript"></th:block>
+
+</head>
+
+<body id="page-top">
+
+<div layout:fragment="content"></div>
+
+</div>
+
+<script th:src="@{/js/jquery-3.3.1.js}"></script>
+<script th:src="@{/js/bootstrap.bundle.js}"></script>
+<th:block layout:fragment="jsScript"></th:block>
+
+</body>
+
+</html>

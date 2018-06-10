@@ -1,0 +1,24 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{/layout/exlist_layout}">
+
+<div layout:fragment="content">
+	<table class="table table-striped table-bordered table-hover">
+		<thead>
+			<tr>
+				<th>BNO</th>
+				<th>TITLE</th>
+				<th>WRITER</th>
+				<th>REGDATE</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="board:${result}">
+				<td><a th:href='${board.bno}'>[[${board.bno}]]</a></td>
+				<td>[[${board.title}]]</td>
+				<td>[[${board.writer}]]</td>
+				<td class="center">[[${#dates.format(board.regdate, 'yyyy-MM-dd')}]]</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

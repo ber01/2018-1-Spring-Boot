@@ -17,7 +17,7 @@ import kr.ac.springboot.term.resume.Resume;
 @Entity
 public class Experience {
 	
-	// 데이터 베이스 연결
+	// 데이터베이스 연결
 	@ManyToOne(fetch=FetchType.LAZY)
 	private Resume resume;
 
@@ -27,11 +27,11 @@ public class Experience {
 		
 	}
 	
-	// 생성자(제목, 내용, 작성자)
-	public Experience(String title, String content, String writer) {
+	// 생성자(제목, 내용, 등급)
+	public Experience(String title, String content, String rating) {
 		this.title = title;
 		this.content = content;
-		this.writer = writer;
+		this.rating = rating;
 	}
 	// End Constructor
 
@@ -44,7 +44,7 @@ public class Experience {
 	
 	private String content; // 과제 내용
 	
-	private String writer; // 과제 작성자
+	private String rating; // 등급
 	
 	@CreationTimestamp
 	private Timestamp regdate; // 작성시간
@@ -78,12 +78,12 @@ public class Experience {
 		this.content = content;
 	}
 
-	public String getWriter() {
-		return writer;
+	public String getRating() {
+		return rating;
 	}
 
-	public void setWriter(String writer) {
-		this.writer = writer;
+	public void setRating(String rating) {
+		this.rating = rating;
 	}
 
 	public Timestamp getRegdate() {
@@ -113,8 +113,8 @@ public class Experience {
 		builder.append(title);
 		builder.append(", content=");
 		builder.append(content);
-		builder.append(", writer=");
-		builder.append(writer);
+		builder.append(", rating=");
+		builder.append(rating);
 		builder.append(", regdate=");
 		builder.append(regdate);
 		builder.append(", updatedate=");

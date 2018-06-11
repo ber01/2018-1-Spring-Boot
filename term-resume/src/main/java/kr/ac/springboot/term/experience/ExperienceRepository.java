@@ -6,6 +6,6 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface ExperienceRepository extends CrudRepository<Experience, Long>{
 
-	// bno기준 내림차순 정렬
-	List<Experience> findAllByOrderByBnoAsc();
+	// 제작시기준 오름차순 정렬
+	List<Experience> findAllByOrderByRegdateAsc();
 }

@@ -1,9 +1,8 @@
-<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{/layout/layout}">
-
-<div layout:fragment="content">
+      layout:decorate="~{/layout/register_layout}">     
+      
+      <div layout:fragment="content">
     <!-- 네비게이션 -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
         <!-- 이력서 이미지 -->
@@ -29,36 +28,23 @@
             </ul>
         </div>
     </nav>
-
-    <div class="container-fluid p-0">
-        <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="experience">
-            <div class="my-auto">
-                <h2 class="mb-5" style="text-align:center">Experience List</h2>
-
-                <div class="text-md-right">
-                    <a th:href="@{register}"><button class="btn-primary" > 경력등록 </button></a>
-                </div>
-
-                <hr/>
-	
-
-                <div class="resume-item d-flex flex-column flex-md-row mb-5">
-                    <div class="resume-content mr-auto">
-                    <tbody>
-                    	<tr th:each="vo:${result}">
-                        	<td><h3><a th:href='${vo.bno}'>[[${vo.bno}]]</a>&nbsp[[${vo.title}]]([[${vo.rating}]])</h3></td>
-                        	<td>[[${vo.content}]]</td>
-                        	<div>
-                            	<button class="btn-info"> 수정</button>
-                            	<a th:href="@{/delete/} + ${vo.bno}"><button class="btn-info"> 삭제</button></a>
-                        	</div>
-                        	<br><br>
-                        </tr>
-                    </tbody>
-                    </div>
-                </div>
+	<div class="wrapper">
+		<h2> Register Your Experience </h2>
+		<form th:action="@{/register}" method="post">
+			<div class="form-group">
+                <label class="labelf">과제이름</label>
+                <input class="form-control" name="title" th:value="${vo.title}" placeholder="과제 제목을 입력하세요" />
             </div>
-        </section>
-    </div>
+            <div class="form-group">
+                <label class="labelf">과제내용</label>
+                <textarea class="form-control" rows="3" name="content" th:text="${vo.content}" placeholder="과제 내용을 입력하세요"></textarea>
+            </div>
+            <div class="form-group">
+                <label class="labelf">점수</label> <input class="form-control" name="rating" th:value="${vo.rating}" placeholder="획득한 점수를 입력하세요"/>
+            </div>
+            <button type="submit" class="btn btn-primary buttonf">등록하기</button>
+            <button type="reset" class="btn btn-warning buttonf">되돌리기</button>
+        </form>
+    </div> 
 </div>
 </html>

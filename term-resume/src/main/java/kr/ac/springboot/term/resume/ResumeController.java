@@ -18,8 +18,7 @@ public class ResumeController {
 	private ResumeRepository re_repo;
 
     @GetMapping("/resume")
-    public String resumeIndex(Model model) {
+    public void resumePage(Model model) {
         model.addAttribute("resume", re_repo.findByRno(1L));
-        return "resume";
     }
 }

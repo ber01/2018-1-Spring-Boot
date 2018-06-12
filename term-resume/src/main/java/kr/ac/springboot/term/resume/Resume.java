@@ -1,5 +1,6 @@
 package kr.ac.springboot.term.resume;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -8,6 +9,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import kr.ac.springboot.term.experience.Experience;
 
@@ -51,6 +55,12 @@ public class Resume {
     private String email; // 이메일
     
     private String introduction; // 소개글 
+    
+	@CreationTimestamp
+	private Timestamp regdate; // 작성시간
+	
+	@UpdateTimestamp
+	private Timestamp updatedate; // 수정시간
     // End Attribute
 
     // Start Getter/Setter
@@ -109,13 +119,23 @@ public class Resume {
 	public void setIntroduction(String introduction) {
 		this.introduction = introduction;
 	}
+	
+	public Timestamp getUpdatedate() {
+		return updatedate;
+	}
+
+	public void setUpdatedate(Timestamp updatedate) {
+		this.updatedate = updatedate;
+	}
 	// end Getter/Setter
 
 	// Start toString
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Resume [rno=");
+		builder.append("Resume [experience=");
+		builder.append(experience);
+		builder.append(", rno=");
 		builder.append(rno);
 		builder.append(", sid=");
 		builder.append(sid);
@@ -129,6 +149,10 @@ public class Resume {
 		builder.append(email);
 		builder.append(", introduction=");
 		builder.append(introduction);
+		builder.append(", regdate=");
+		builder.append(regdate);
+		builder.append(", updatedate=");
+		builder.append(updatedate);
 		builder.append("]");
 		return builder.toString();
 	}

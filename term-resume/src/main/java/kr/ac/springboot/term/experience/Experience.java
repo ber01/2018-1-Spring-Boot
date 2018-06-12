@@ -28,10 +28,11 @@ public class Experience {
 	}
 	
 	// 생성자(제목, 내용, 등급)
-	public Experience(String title, String content, String rating) {
+	public Experience(String title, String content, String rating, Resume resume) {
 		this.title = title;
 		this.content = content;
 		this.rating = rating;
+		this.resume = resume;
 	}
 	// End Constructor
 
@@ -100,6 +101,14 @@ public class Experience {
 
 	public void setUpdatedate(Timestamp updatedate) {
 		this.updatedate = updatedate;
+	}
+	
+	public Resume getResume() {
+		return resume;
+	}
+
+	public void setResume(Resume resume) {
+		this.resume = resume;
 	}
 	// End getter/setter
 

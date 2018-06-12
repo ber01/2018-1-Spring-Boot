@@ -1,15 +1,16 @@
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{/layout/register_layout}">     
+      layout:decorate="~{/layout/update_layout}">     
       
-      <div layout:fragment="content">
+<div layout:fragment="content">
     <!-- 네비게이션 -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
         <!-- 이력서 이미지 -->
         <a class="navbar-brand js-scroll-trigger" href="#page-top">
             <span class="d-block d-lg-none">Start Bootstrap</span>
             <span class="d-none d-lg-block">
-              <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="img/profile.jpg" alt="">
+              <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="../../img/profile.jpg" alt="">
             </span>
         </a>
         <!-- 왼쪽 본문 -->
@@ -29,7 +30,7 @@
         </div>
     </nav>
 	<div class="wrapper">
-		<h2> Update Your Experience </h2>
+		<h2> <span style="color: #1C84FB">Update</span> Your Experience</h2>
 		<form th:action="@{/experience/update}" method="post">
 			<div class="form-group">
 				<label class="labelf">게시물 번호</label>
@@ -47,8 +48,8 @@
             <div class="form-group">
                 <label class="labelf">점수</label> <input class="form-control" name="rating" th:value="${vo.rating}" placeholder="획득한 점수를 입력하세요"/>
             </div>
-            <button type="submit" class="btn btn-primary buttonf">등록하기</button>
-            <button type="reset" class="btn btn-warning buttonf">되돌리기</button>
+            <button type="submit" class="btn btn-primary buttonf" style="background-color: #FF9900; border: 1px solid #FF9900; cursor: pointer;">수정하기</button>
+            <button type="reset" class="btn btn-warning buttonf" style="color: white;">되돌리기</button>
         </form>
     </div> 
 </div>

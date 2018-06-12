@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{/layout/register_layout}">     
+      layout:decorate="~{/layout/item_layout}">     
       
 <div layout:fragment="content">
     <!-- 네비게이션 -->
@@ -29,23 +29,15 @@
             </ul>
         </div>
     </nav>
-	<div class="wrapper">
-		<h2> <span style="color: #FF9900;"> Register </span> Your Experience </h2>
-		<form th:action="@{/experience/register}" method="post">
-			<div class="form-group">
-                <label class="labelf">과제이름</label>
-                <input class="form-control" name="title" th:value="${vo.title}" placeholder="과제 제목을 입력하세요" />
-            </div>
-            <div class="form-group">
-                <label class="labelf">과제내용</label>
-                <textarea class="form-control" rows="3" name="content" th:text="${vo.content}" placeholder="과제 내용을 입력하세요"></textarea>
-            </div>
-            <div class="form-group">
-                <label class="labelf">점수</label> <input class="form-control" name="rating" th:value="${vo.rating}" placeholder="획득한 점수를 입력하세요"/>
-            </div>
-            <button type="submit" class="btn btn-primary buttonf" style="background-color: #FF9900; border: 1px solid #FF9900; cursor: pointer;">등록하기</button>
-            <button type="reset" class="btn btn-warning buttonf" style="color: white;">되돌리기</button>
-        </form>
+	<div class="wrapper" style="margin-top:20%;">
+		<h2 style="color: red; font-size:80px;"> [[${result.rating}]] </h2>
+		<hr>
+       	<div>
+       		<h2 style="text-align: center;"><span style="color: brown; font-size: 70px;">[[${result.bno}]]</span>&nbsp[[${result.title}]]</h2>
+       	</div>
+       	<div>
+       		<p style="text-align: center;"> [[${result.content}]] </p>
+       	</div>
     </div> 
 </div>
 </html>

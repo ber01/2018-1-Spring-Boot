@@ -23,14 +23,19 @@
                     <a class="nav-link js-scroll-trigger" href="/resume">소개</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="/experience">경력</a>
+                    <a class="nav-link js-scroll-trigger" href="/experience/">경력</a>
                 </li>
             </ul>
         </div>
     </nav>
 	<div class="wrapper">
-		<h2> Register Your Experience </h2>
-		<form th:action="@{/register}" method="post">
+		<h2> Update Your Experience </h2>
+		<form th:action="@{/experience/update}" method="post">
+			<div class="form-group">
+				<label class="labelf">게시물 번호</label>
+				<input readonly="readonly" class="form-control" name="bno" th:value="${vo.bno}"/>
+			</div>
+		
 			<div class="form-group">
                 <label class="labelf">과제이름</label>
                 <input class="form-control" name="title" th:value="${vo.title}" placeholder="과제 제목을 입력하세요" />

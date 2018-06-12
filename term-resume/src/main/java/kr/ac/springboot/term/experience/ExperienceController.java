@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/experience/")
 public class ExperienceController {
 
 	@Autowired
@@ -20,11 +22,7 @@ public class ExperienceController {
     @GetMapping("/")
     public String list(Model model) {
         model.addAttribute("result", repo.findAllByOrderByRegdateAsc());
-        return "experience";
-    }
-    @GetMapping("/experience")
-    public void expereience(Model model) {
-        model.addAttribute("result", repo.findAllByOrderByRegdateAsc());
+        return "/experience/experience";
     }
     
     // 등록
@@ -34,29 +32,29 @@ public class ExperienceController {
     @PostMapping("/register")
     public String registerPOST(@ModelAttribute("vo") Experience vo) {
         repo.save(vo);
-        return "redirect:/";
+        return "redirect:/experience/";
     }
     
     // 삭제
-    @GetMapping("/delete/{bno}")
+    @GetMapping("/{bno}/delete")
     public String delete(@PathVariable("bno") long bno) {
         if (repo.findById(bno).isPresent()) {
             repo.deleteById(bno);
         } else {
             return "errors/404";
         }
-        return "redirect:/";
+        return "redirect:/experience/";
     }
     
     // 수정
-    @GetMapping("/update/{bno}")
+    @GetMapping("/{bno}/update")
     public String editGet(@PathVariable("bno") long bno, @ModelAttribute("vo") Experience vo, Model model) {
         if (repo.findById(bno).isPresent()) {
             model.addAttribute("vo", repo.findById(bno).get());
         } else {
             return "errors/404";
         }
-        return "/update";
+        return "/experience/update";
     }
 
     @PostMapping("/update")
@@ -70,6 +68,6 @@ public class ExperienceController {
         } else {
             repo.save(vo);
         }
-        return "redirect:/";
+        return "redirect:/experience/";
     }
 }

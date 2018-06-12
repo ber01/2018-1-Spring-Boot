@@ -24,7 +24,7 @@
                     <a class="nav-link js-scroll-trigger" href="/resume">소개</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="/experience">경력</a>
+                    <a class="nav-link js-scroll-trigger" href="/experience/">경력</a>
                 </li>
             </ul>
         </div>
@@ -36,21 +36,20 @@
                 <h2 class="mb-5" style="text-align:center">Experience List</h2>
 
                 <div class="text-md-right">
-                    <a th:href="@{register}"><button class="btn-primary" > 경력등록 </button></a>
+                    <a th:href="@{/experience/register}"><button class="btn-primary" > 경력등록 </button></a>
                 </div>
 
                 <hr/>
 	
-
                 <div class="resume-item d-flex flex-column flex-md-row mb-5">
                     <div class="resume-content mr-auto">
                     <tbody>
                     	<tr th:each="vo:${result}">
                         	<td><h3><a th:href='${vo.bno}'>[[${vo.bno}]]</a>&nbsp[[${vo.title}]]([[${vo.rating}]])</h3></td>
-                        	<td>[[${vo.content}]]</td>
-                        	<div>
-                            	<a th:href="@{/update/} + ${vo.bno}"><button class="btn-info"> 수정</button></a>
-                            	<a th:href="@{/delete/} + ${vo.bno}"><button class="btn-info"> 삭제</button></a>
+                        	<td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp[[${vo.content}]]</td>
+                        	<div style="text-align: right;">
+                            	<a th:href="@{/experience/} + ${vo.bno} + @{/update}"><button class="btn-info"> 수정</button></a>
+                            	<a th:href="@{/experience/} + ${vo.bno} + @{/delete}"><button class="btn-info"> 삭제</button></a>
                         	</div>
                         	<br><br>
                         </tr>

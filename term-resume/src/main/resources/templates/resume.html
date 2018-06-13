@@ -4,50 +4,157 @@
       layout:decorate="~{/layout/layout}">
 
 <div layout:fragment="content">
-    <!-- 네비게이션 -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
-        <!-- 이력서 이미지 -->
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">
-            <span class="d-block d-lg-none">Start Bootstrap</span>
-            <span class="d-none d-lg-block">
-              <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="img/profile.jpg" alt="">
-            </span>
-        </a>
-        <!-- 왼쪽 본문 -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="/resume">소개</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="/experience/">경력</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
 
     <div class="container-fluid p-0">
         <!-- 소개 -->
         <section class="resume-section p-3 p-lg-5 d-flex d-column" id="about">
-            <div class="my-auto" th:each="vo:${resume}">
+            <div class="my-auto" style="margin: 0 auto; text-align: center;" th:each="vo:${resume}">
                 <h1 class="mb-0"> [[${vo.sid}]]
-                    <span class="text-primary">[[${vo.name}]]</span>
+                    <span class="text-primary;" style="color: #FF9900;">[[${vo.name}]]</span>
                 </h1>
                 <div class="subheading mb-5"> [[${vo.school}]] [[${vo.department}]]
-                    <a style=text-transform:lowercase href="mailto:ksyj8256@gmail.com"> [[${vo.email}]] </a>
+                    <a style="text-transform:lowercase;" href="mailto:ksyj8256@gmail.com"> [[${vo.email}]] </a>
                 </div>
                 <p class="mb-5"> [[${vo.introduction}]] </p>
                 <hr/>
-                <div>
-                    <h2> Q&A </h2>
-                </div>
+                <div style="text-align: center;"><h2>Q&A</h2></div>
+				<div class='pull-right' style="text-align: right;">
+					<button class='btn' id='addReplyBtn' style="border: 1px solid black; padding: 10px; background-color: white;">작성하기</button>
+				</div>
+                <hr>
+                
+                <div class='container'>
+					<table class="table table-striped table-bordered table-hover">
+						<thead>
+							<tr>
+								<th>번호</th>
+								<th>내용</th>
+								<th>작성자</th>
+								<th>작성 시간</th>
+							</tr>
+						</thead>
+						<tbody id="replyTable">
+						</tbody>
+					</table>		
+				</div>
+				<!-- Modal -->
+				<div id="myModal" class="modal fade" role="dialog">
+					<div class="modal-dialog">
+			
+						<!-- Modal content-->
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h4 class="modal-title">Modal Header</h4>
+							</div>
+							<div class="modal-body" style="text-align: left;">
+								<label>댓글내용</label>
+								<input type="text" class="form-control" name='replyText'><br>
+			
+								<label>작성자</label>
+								<input type="text" class="form-control" name='replyer'>
+							</div>
+							<div class="modal-footer">
+								<button id='delModalBtn'class="btn btn-danger">삭제</button>
+								<button id='modalBtn'class="btn btn-info">저장</button>
+								<button type="button" class="btn btn-default" data-dismiss="modal" style="border: 1px solid black;">닫기</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--  end Modal -->
             </div>
         </section>
     </div>
 </div>
+
+
+<th:block layout:fragment="jsScript">
+
+	<script th:inline="javascript" th:src="${'./js/reply.js'}"></script>
+
+	<script th:inline="javascript">
+        $(document).ready(function (e) {
+            var mode;
+            var rno = [[${resume[0].rno}]];
+           	console.log(rno);
+            var replyTextObj = $("input[name='replyText']");
+            var replyerObj = $("input[name='replyer']");
+            var pno;
+            $("#addReplyBtn").on('click', function () {
+                $("#myModal").modal("show");
+                $(".modal-title").text("댓글 작성");
+                $("#delModalBtn").hide();
+                mode = "ADD";
+            });
+            $("#modalBtn").click(function () {
+                var replyText = replyTextObj.val();
+                var replyer = replyerObj.val();
+                if (mode == 'ADD') {
+                    var obj = {replyText: replyText, replyer: replyer, rno: rno};
+                    //console.log(obj);
+                    replyManager.add(obj, function (list) {
+                        alert("새로운 댓글이 추가되었습니다. ")
+                        afterAll(list);
+                    });
+                } else if (mode = 'MOD') {
+                    var obj = {replyText: replyText, rno: rno, pno: pno, replyer:replyer};
+                    replyManager.update(obj, function (list) {
+                        alert("댓글이 수정되었습니다. ")
+                        afterAll(list);
+                    });
+                }
+            });
+            (function getAllReplies() {
+                replyManager.getAll([[${resume[0].rno}]], printList);
+            })();
+            function printList(list) {
+                var str = "";
+                var replyObj;
+                for (var i = 0; i < list.length; i++) {
+                    replyObj = list[i];
+                    str += "<tr>" +
+                        "<td>" + replyObj.pno + " </td>" +
+                        "<td>" + replyObj.replyText + " </td>" +
+                        "<td>" + replyObj.replyer + " </td>" +
+                        "<td>" + formatDate(replyObj.regdate) + " </td>" +
+                        "</tr>";
+                }
+            	console.log(list)
+                $("#replyTable").html(str);
+            }
+            $("#replyTable").on("click", "tr", function (e) {
+                var tds = $(this).find('td');
+                console.log(tds);
+                pno = tds[0].innerHTML;
+                mode = 'MOD';
+                replyTextObj.val(tds[1].innerHTML);
+                replyerObj.val(tds[2].innerHTML);
+                $("#delModalBtn").show();
+                $("#myModal").modal("show");
+                $(".modal-title").text("댓글 수정 및 삭제");
+            });
+            $("#delModalBtn").on("click", function () {
+                var obj = {rno: rno, pno: pno};
+                replyManager.remove(obj, function (list) {
+                    alert("댓글이 삭제되었습니다. ")
+                    afterAll(list);
+                });
+            });
+            function afterAll(list) {
+                printList(list);
+                $("#myModal").modal("hide");
+                replyTextObj.val("");
+                replyerObj.val("");
+            }
+            function formatDate(timeValue) {
+                var date = new Date(timeValue);
+                return date.getFullYear()
+                    + "-" + (date.getMonth() + 1 >= 10 ? date.getMonth() + 1 : '0' + (date.getMonth() + 1))
+                    + "-" + date.getDate()
+            }
+        });
+	</script>
+</th:block>
 
 </html>

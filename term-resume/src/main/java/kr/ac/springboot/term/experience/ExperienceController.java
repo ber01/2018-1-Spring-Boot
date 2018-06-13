@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import kr.ac.springboot.term.resume.Resume;
 import kr.ac.springboot.term.resume.ResumeRepository;
 
 @Controller
@@ -30,7 +29,7 @@ public class ExperienceController {
         model.addAttribute("result", ex_repo.findAllByOrderByRegdateAsc());
         return "/experience/experience";
     }
-    // End Vie
+    // End View
     
     // Register Start
     @GetMapping("/register")
@@ -38,8 +37,7 @@ public class ExperienceController {
     }
     @PostMapping("/register")
     public String registerPOST(@ModelAttribute("vo") Experience vo) {
-    	Resume resume = re_repo.findById(1L).get();
-    	vo.setResume(resume);
+    	vo.setResume(re_repo.findById(1L).get());
         ex_repo.save(vo);
         return "redirect:/experience/";
     }

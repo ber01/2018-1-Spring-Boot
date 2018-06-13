@@ -8,17 +8,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ResumeController {
 
-    // '/' ==> list
-    // '/register' ==> create
-    // '/{rno} ==> view
-    // '/{rno}/update ==> update'
-    // '/{rno}/delete ==> delete'
-	
+	// '/' ==> list
+	// '/register' ==> create
+	// '/{rno} ==> view
+	// '/{rno}/update ==> update'
+	// '/{rno}/delete ==> delete'
+
 	@Autowired
 	private ResumeRepository re_repo;
 
-    @GetMapping("/resume")
-    public void resumePage(Model model) {
-        model.addAttribute("resume", re_repo.findByRno(1L));
-    }
+	@GetMapping("/resume")
+	public void resumePage(Model model) {
+		model.addAttribute("resume", re_repo.findByRno(1L));
+	}
 }

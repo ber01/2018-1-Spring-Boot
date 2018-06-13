@@ -13,7 +13,10 @@ import javax.persistence.OneToMany;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import kr.ac.springboot.term.experience.Experience;
+import kr.ac.springboot.term.resumereply.ResumeReply;
 
 @Entity
 public class Resume {
@@ -22,13 +25,17 @@ public class Resume {
 	@OneToMany(mappedBy="resume", fetch=FetchType.LAZY)
 	private List<Experience> experience;
 	
+	@JsonIgnore
+	@OneToMany(mappedBy="resume", fetch=FetchType.LAZY)
+	private List<ResumeReply> resumeReply;
+	
 	// Start Constructor
 	// 기본 생성자
 	public Resume() {
     	
 	}
 	
-	// 생성자(학번, 이름, 학교, 학과, 이메일, 소개글)
+	// 생성자(학번, 이름, 학교, 학과, 이메일, 소개글, Resume 객체)
 	public Resume(int sid, String name, String school, String department, String email, String introduction) {
 		this.sid = sid;
 		this.name = name;
@@ -126,6 +133,30 @@ public class Resume {
 
 	public void setUpdatedate(Timestamp updatedate) {
 		this.updatedate = updatedate;
+	}
+
+	public List<Experience> getExperience() {
+		return experience;
+	}
+
+	public void setExperience(List<Experience> experience) {
+		this.experience = experience;
+	}
+
+	public List<ResumeReply> getResumeReply() {
+		return resumeReply;
+	}
+
+	public void setResumeReply(List<ResumeReply> resumeReply) {
+		this.resumeReply = resumeReply;
+	}
+
+	public Timestamp getRegdate() {
+		return regdate;
+	}
+
+	public void setRegdate(Timestamp regdate) {
+		this.regdate = regdate;
 	}
 	// end Getter/Setter
 
